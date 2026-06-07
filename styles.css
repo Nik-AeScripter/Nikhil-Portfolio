@@ -566,16 +566,18 @@ i { font-style: normal; }
   transform: translate(-50%, -50%) scale(0.85);
   width: 64px; height: 64px;
   border-radius: 50%;
-  background: rgba(255, 77, 46, 0.95);
+  background: rgba(255, 77, 46, 0.75);
   color: #fff;
   display: grid; place-items: center;
   z-index: 2;
-  opacity: 0;
+  opacity: 0.8;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   transition: opacity 0.4s, transform 0.5s var(--ease), background 0.3s;
-  box-shadow: 0 8px 20px -4px rgba(255, 77, 46, 0.5);
+  box-shadow: 0 8px 20px -4px rgba(255, 77, 46, 0.4);
 }
 .video-play svg { width: 24px; height: 24px; margin-left: 3px; }
-.video-card:hover .video-play { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.video-card:hover .video-play { opacity: 1; transform: translate(-50%, -50%) scale(1); background: rgba(255, 77, 46, 0.95); }
 .video-card:hover .video-play:hover { background: #fff; color: var(--accent); }
 .video-meta {
   padding: 14px 4px 0;
@@ -609,6 +611,9 @@ i { font-style: normal; }
   align-items: center;
   justify-content: center;
   transition: transform 0.4s var(--ease), border-color 0.4s;
+}
+.lottie-card lottie-player {
+  pointer-events: none;
 }
 .lottie-card:hover {
   transform: translateY(-4px);
