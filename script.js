@@ -10,12 +10,19 @@
 
   // ========== Nav scroll state ==========
   const nav = document.getElementById('nav');
+  let isScrolling = false;
   const onScroll = () => {
     if (!nav) return;
     if (window.scrollY > 30) nav.classList.add('is-scrolled');
     else nav.classList.remove('is-scrolled');
+    isScrolling = false;
   };
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', () => {
+    if (!isScrolling) {
+      window.requestAnimationFrame(onScroll);
+      isScrolling = true;
+    }
+  }, { passive: true });
   onScroll();
 
   // ========== Mobile nav ==========
@@ -151,6 +158,25 @@
       }
     });
   });
+
+  // ========== Lottie Lazy Load ==========
+  if ('IntersectionObserver' in window) {
+    const lottieObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const player = entry.target;
+        // The play() and pause() methods are available on the lottie-player web component
+        if (entry.isIntersecting) {
+          player.play();
+        } else {
+          player.pause();
+        }
+      });
+    }, { rootMargin: '100px 0px 100px 0px' });
+
+    document.querySelectorAll('lottie-player').forEach(player => {
+      lottieObserver.observe(player);
+    });
+  }
 })();
 
 // ========== Custom Cursor Logic ==========
