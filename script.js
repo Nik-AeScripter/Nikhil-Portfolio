@@ -152,3 +152,45 @@
     });
   });
 })();
+
+// ========== Custom Cursor Logic ==========
+(function() {
+  const cursor = document.getElementById('custom-cursor');
+  const cursorDot = document.getElementById('custom-cursor-dot');
+  
+  if (!cursor || !cursorDot) return;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // Update dot immediately
+    cursorDot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+  });
+
+  // Smooth follow for the outer ring
+  function animateCursor() {
+    // Easing factor (0 to 1, higher is faster)
+    const easing = 0.25;
+    
+    cursorX += (mouseX - cursorX) * easing;
+    cursorY += (mouseY - cursorY) * easing;
+    
+    cursor.style.transform = `translate(calc(${cursorX}px - 50%), calc(${cursorY}px - 50%))`;
+    
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  // Add hover effect to interactive elements
+  const interactives = document.querySelectorAll('a, button, input, textarea, select, .video-card, .lottie-card');
+  interactives.forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('is-hovering'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('is-hovering'));
+  });
+})();
