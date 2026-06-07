@@ -592,6 +592,41 @@ i { font-style: normal; }
 }
 .video-card:hover .video-meta h4 { color: var(--accent-2); }
 
+/* ========== Lottie ========== */
+.lottie { padding-top: clamp(40px, 6vw, 80px); }
+.lottie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.lottie-card {
+  background: linear-gradient(160deg, #181818, #0e0e0e);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s var(--ease), border-color 0.4s;
+}
+.lottie-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 77, 46, 0.3);
+}
+.lottie-title {
+  margin-top: 20px;
+  font-family: var(--serif);
+  font-size: 18px;
+  color: #fff;
+  letter-spacing: 0.05em;
+  text-align: center;
+  transition: color 0.3s;
+}
+.lottie-card:hover .lottie-title {
+  color: var(--accent-2);
+}
+
 /* ========== About ========== */
 .about-inner {
   display: grid;

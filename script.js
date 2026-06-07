@@ -49,7 +49,7 @@
 
   // ========== Scroll reveal ==========
   const reveals = document.querySelectorAll(
-    '.section-head, .category, .video-card, .service, .about-text, .about-card, .contact-left, .contact-form, .mini-stat'
+    '.section-head, .category, .video-card, .lottie-card, .service, .about-text, .about-card, .contact-left, .contact-form, .mini-stat'
   );
   reveals.forEach((el, i) => {
     el.classList.add('reveal');
